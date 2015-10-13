@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="bin/www" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="/usr/bin/node" path-to-js-file="$USER_HOME$/WebstormProjects/BackendTest/bin/www" working-dir="$USER_HOME$/WebstormProjects/BackendTest">
+    <envs>
+      <env name="DEBUG" value="untitled1:*" />
+    </envs>
+    <browser start="true" url="https://localhost:3000/" />
+    <method />
+  </configuration>
+</component>
