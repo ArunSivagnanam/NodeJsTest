@@ -12,7 +12,7 @@ router.get('/register', function(req, res, next){
 });
 
 router.get('/login', function(req, res, next){
-  res.render('login', { title: 'PlanPenny' });
+  res.render('login', { title: 'PlanPenny' , error: req.flash('error')});
 });
 
 router.get('/home',restrict, function(req, res, next){

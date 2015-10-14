@@ -21,7 +21,7 @@ module.exports = function() {
                     return next(err);
                 }
                 if(!same){
-                    return (null, null); // no err, no user
+                    return next(null, null); // no err, no user
                 }
                 next(null,user); // no err, valid userW
             });

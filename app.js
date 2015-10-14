@@ -11,6 +11,8 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var flash = require('connect-flash');
 var passport = require('passport');
+var connectMongo = require('connect-mongo');
+var MongoStore = connectMongo(session);
 
 var app = express();
 
@@ -27,16 +29,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(flash());
 
 app.use(session(
     { secret: 'ilovescotchscotchyscotchscotch',
       saveUninitialized: false,
-      resave: false
+      resave: false,
+      store: new MongoStore({
+        mongooseConnection: mongoose.connection
+      })
     }
 ));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash());
+
 
 /** ROUTES OBJ TO USE UNDER ROUTES **/
 app.use('/', index);

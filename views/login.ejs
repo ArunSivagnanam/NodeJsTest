@@ -18,6 +18,9 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary">Login</button>
+                    <%if (error) { %>
+                    <div><%= error %></div>
+                    <% } %>
                 </div>
             </div>
         </section>

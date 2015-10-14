@@ -28,7 +28,7 @@ router.post('/register', function(req, res, next){
             if(err) { // validation err is 500 from mongo
                 next(err); // buble up to error handler
             }else{
-                req.login(req.body,function(err){
+                req.login(user,function(err){
 
                     if(err){
                         res.status(200).send('try manual login');
@@ -43,13 +43,11 @@ router.post('/register', function(req, res, next){
 
 });
 
-router.post('/login',passport.authenticate('local'), function(req, res, next){
-
-    res.redirect('/home');
-
-});
-
-
+router.post('/login',passport.authenticate('local',{
+    failureRedirect: '/login',
+    successRedirect: '/home',
+    failureFlash: 'invalid credentials'
+}));
 
 
 module.exports = router;

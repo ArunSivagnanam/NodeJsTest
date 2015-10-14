@@ -5,7 +5,7 @@
 var mongoose = require('mongoose');
 
 
-// user scheme, validating unique email and length of password
+// user scheme, validating unique email, password is hashed
 var userScheme = mongoose.Schema({
 
     name: {

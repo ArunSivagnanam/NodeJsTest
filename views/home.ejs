@@ -2,6 +2,44 @@
 
 <p>you are logged in as <%= user %></p>
 
+<div id="chat">
+
+</div>
+
+<style>
+    #chat{
+        height: 500px;
+    }
+</style>
+
+<form id = "sendMessage">
+    <input size="35" id="message"></input>
+    <input type="submit"></input>
+</form>
+
 <a href="/logout">logout</a>
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    $(document).ready(function() {
+        console.log( "ready!" );
+        var socket = io.connect();
+        var $messageForm = $('#sendMessage');
+        var $messageBox = $('#message');
+        var $chat = $('#chat');
+
+        $messageForm.submit(function(e){
+            e.preventDefault();
+            socket.emit('send-message',$messageBox.val());
+            $messageBox.val('');
+        });
+
+        socket.on('new-message',function(data){
+            $chat.append(data+ '</br>');
+        });
+
+    });
+</script>
 
 <% include ../views/partials/footer.ejs %>

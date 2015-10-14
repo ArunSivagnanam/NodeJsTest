@@ -6,9 +6,11 @@
 
 var app = require('../app');
 var debug = require('debug')('BackendTest:server');
-var http = require('http'); // not used for now
+var http = require('http');
 var fs = require('fs');
-var https = require('https');
+var https = require('https'); // not used for now, as i deploy to heroku, they encrypt trafic
+var SocketIO = require('socket.io');
+var socketConfig = require('../sockets/io.js');
 
 /**
  * Get port from environment and store in Express.
@@ -29,7 +31,8 @@ var certificate = {
 
 //var server = https.createServer(certificate, app);
 var server = http.createServer(app);
-
+var socketIO = new SocketIO(server);
+socketConfig(socketIO);
 /**
  * Listen on provided port, on all network interfaces.
  */
