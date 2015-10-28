@@ -4,7 +4,6 @@
 
 var mongoose = require('mongoose');
 
-
 // user scheme, validating unique email, password is hashed
 var userScheme = mongoose.Schema({
 
@@ -20,7 +19,11 @@ var userScheme = mongoose.Schema({
         validate: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     },
     password:{
-        type: String
+        type: String,
+        required: 'password is required'
+    },
+    lastLogin: {
+        type: Date, default: Date.now
     }
 
 });

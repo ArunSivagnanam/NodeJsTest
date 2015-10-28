@@ -4,11 +4,12 @@ module.exports = function() {
     var localStrategy = require('passport-local');
     var User = require('../models/User.js');
     var bcrypt = require('bcrypt');
+    var userController = require('../controllers/UserController');
 
     // takes a function that validates user
     passport.use(new localStrategy.Strategy({usernameField:'email'},function (email, password, next) {
 
-        User.findOne({'email': new RegExp(email, "i")}, function (err, user) {
+       userController.findAndUpdateLastLogin(email, function (err, user) {
 
             if (err) {
                 return next(err); // error
@@ -23,9 +24,11 @@ module.exports = function() {
                 if(!same){
                     return next(null, null); // no err, no user
                 }
-                next(null,user); // no err, valid userW
+                next(null,user); // no err, valid user
+
             });
         });
+
     }));
 
     // serializes a users mail into the session cookie

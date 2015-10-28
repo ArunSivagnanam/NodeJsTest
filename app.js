@@ -1,17 +1,17 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var index = require('./routes/index');
-var usersAPI = require('./routes/usersAPI');
+var taskAPI = require('./routes/api/TaskAPI');
 var authAPI = require('./routes/login-register');
 var mongoose = require('mongoose');
 var session = require('express-session');
 var flash = require('connect-flash');
 var passport = require('passport');
 var connectMongo = require('connect-mongo');
+var config = require('./config.js');
 var MongoStore = connectMongo(session);
 
 var app = express();
@@ -46,8 +46,8 @@ app.use(passport.session());
 
 /** ROUTES OBJ TO USE UNDER ROUTES **/
 app.use('/', index);
-app.use('/usersAPI', usersAPI);
 app.use('/authAPI',authAPI);
+app.use('/taskAPI',taskAPI);
 
 
 /** MIDDLEWARE FUNCTIONS FOR ERROR HANDLING **/
@@ -82,12 +82,15 @@ if (app.get('env') === 'development') {
   app.use(pageNotFoundHandler);
   app.use(devErrorHandler);
 
-  mongoose.connect('mongodb://localhost/planpenny');
+  mongoose.connect(config.mongoUri_DEV);
+
 }
 
 if (app.get('env') === 'production') {
   app.use(pageNotFoundHandler);
   app.use(prodErrorHandler);
+
+  mongoose.connect(config.mongoUri_PROD);
 }
 
 module.exports = app;

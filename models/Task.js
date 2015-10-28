@@ -1,25 +1,33 @@
-/**
- * Created by arun on 10/10/15.
- */
+
 var mongoose = require('mongoose');
 
-
-// user scheme, validating unique email and length of paaword
 var taskScheme = mongoose.Schema({
 
-    name: {
+    userID: {
+        type:String,
+        required: "no user specified"
+    },
+    projectId: {
         type: String,
-        required: 'Task name is required'
+        default: "no project defined"
     },
-    text: {
-        type: String
+    taskName: {
+        type: String,
+        required: 'Please enter task name'
     },
-    startDate:{
-        type: Date
+    ttc: {
+        type:Number,
+        default: null
     },
-    hours:{
-        type: Number
-    }
+    starTtime: {
+        type: Date,
+        default: Date.now
+    },
+    endTime: {
+        type: Date,
+        default : null
+    },
+    note: String
 
 });
 

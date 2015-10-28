@@ -15,6 +15,12 @@
     "express": "~4.13.1",
     "mongoose": "^4.1.10",
     "morgan": "~1.6.1",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "socket.io-adapter-mongo": "^0.1.4",
+    "socket.io-adapter-mongodb": "^1.0.0",
+    "socket.io-mongo": "0.0.8",
+    "strong-cluster-socket.io-store": "^0.1.6",
+    "strong-mq": "^1.0.0",
+    "strong-store-cluster": "^1.0.0"
   }
 }

@@ -5,6 +5,7 @@ var router = express.Router();
 
 var index = function(req, res, next){
   res.render('index', { title: 'PlanPenny'});
+
 };
 
 router.get('/register', function(req, res, next){
@@ -16,12 +17,9 @@ router.get('/login', function(req, res, next){
 });
 
 router.get('/home',restrict, function(req, res, next){
-  res.render('home', { title: 'PlanPenny', user: req.user  });
+  res.render('home', { title: 'PlanPenny', user: req.user });
 });
 
-router.get('/bob',restrict, function(req, res, next){
-  res.send("bobob");
-});
 
 router.get('/logout', function(req, res, next){
   req.logOut();

@@ -2,8 +2,8 @@
  * Created by arun on 10/10/15.
  */
 var express = require('express');
-var User = require('../models/User.js');
 var passport = require('passport');
+var userController = require('../controllers/UserController');
 var bcrypt = require('bcrypt');
 var router = express.Router();
 
@@ -15,21 +15,20 @@ router.post('/register', function(req, res, next){
         if(err){
             return next(err);
         }
-        var user = new User({
+        var user = {
             name:{
                 first: req.body.firstname,
                 last: req.body.lastname
             },
             email: req.body.email,
             password: hash
-        });
-
-        user.save(function(err){
+        };
+        userController.addUser(user, function(err,savedUser){
             if(err) { // validation err is 500 from mongo
                 next(err); // buble up to error handler
             }else{
+                console.log("the user got id: "+savedUser.id);
                 req.login(user,function(err){
-
                     if(err){
                         res.status(200).send('try manual login');
                     }else{
@@ -38,7 +37,6 @@ router.post('/register', function(req, res, next){
                 });
             }
         });
-
     });
 
 });
