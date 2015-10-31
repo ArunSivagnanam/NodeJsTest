@@ -1,6 +1,15 @@
-<% include ../views/partials/head.ejs %>
+<!DOCTYPE html>
+<html>
+    <% include ../views/partials/head.ejs %>
+    <body ng-app="planpenny-app">
 
-<p>you are logged in as <%= user %></p>
-<a href="/logout">logout</a>
 
-<% include ../views/partials/footer.ejs %>
+    <a href ="#/timeLine">timeline</a>
+    <br>
+    <a href ="#/tasks">tasks</a>
+
+    <div>This is single page loading</div>
+    <div ng-view> </div>
+
+    </body>
+</html>

@@ -1,10 +1,15 @@
-<% include ../views/partials/head.ejs %>
-  <h1><%= title %></h1>
-  <p>Welcome to <%= title %></p>
+<!DOCTYPE html>
+<html>
+  <% include ../views/partials/head.ejs %>
+  <body>
 
-  <a href="/login">Login</a>
-  <br>
-  <a href="/register">register</a>
-<% include ../views/partials/footer.ejs %>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
 
+    <a href="/login">Login</a>
+    <br>
+    <a href="/register">register</a>
 
+    <% include ../views/partials/footer.ejs %>
+  </body>
+</html>

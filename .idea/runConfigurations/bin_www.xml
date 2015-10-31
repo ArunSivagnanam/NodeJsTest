@@ -1,9 +1,11 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="bin/www" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="/usr/bin/node" path-to-js-file="$USER_HOME$/WebstormProjects/PlanPenny/bin/www" working-dir="$USER_HOME$/WebstormProjects/PlanPenny">
+  <configuration default="false" name="bin/www" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="/usr/bin/node" path-to-js-file="bin/www" working-dir="$PROJECT_DIR$">
     <envs>
       <env name="DEBUG" value="untitled1:*" />
     </envs>
     <browser start="true" url="http://localhost:3000/" />
-    <method />
+    <method>
+      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_browserify" />
+    </method>
   </configuration>
 </component>

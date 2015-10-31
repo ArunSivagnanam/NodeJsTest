@@ -4,11 +4,9 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var app = require('./../app');
 var debug = require('debug')('BackendTest:server');
 var http = require('http');
-var fs = require('fs');
-var https = require('https'); // not used for now, as i deploy to heroku, they encrypt traffic
 var SocketIO = require('socket.io');
 var socketApi = require('../sockets/socketApi.js');
 
@@ -23,13 +21,6 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var certificate = {
-  key: fs.readFileSync(__dirname + '/key.pem'),
-  cert: fs.readFileSync(__dirname + '/cert.pem'),
-  passphrase: '8014XKbank'
-};
-
-//var server = https.createServer(certificate, app);
 var server = http.createServer(app);
 var socketIO = SocketIO.listen(server);
 socketApi(socketIO);

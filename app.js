@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var taskAPI = require('./routes/api/TaskAPI');
 var authAPI = require('./routes/login-register');
+var templateRoutes = require("./routes/templates");
 var mongoose = require('mongoose');
 var session = require('express-session');
 var flash = require('connect-flash');
@@ -48,6 +49,7 @@ app.use(passport.session());
 app.use('/', index);
 app.use('/authAPI',authAPI);
 app.use('/taskAPI',taskAPI);
+app.use('/template',templateRoutes);
 
 
 /** MIDDLEWARE FUNCTIONS FOR ERROR HANDLING **/
